@@ -34,6 +34,11 @@ class CompanyService {
         return companies;
     }
 
+    async getCompaniesWithIds(idArray) {
+        const companies = await Company.find({_id: {$in: idArray}});
+        return companies;
+    }
+
     async getCompaniesByCity(cityName) {
         const companies = await Company.find({'address.city': cityName});
         return companies;

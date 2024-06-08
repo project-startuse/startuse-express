@@ -35,5 +35,10 @@ router.get('/feed/:id', auth, async (req, res) => {
     res.json(feed);
 });
 
+router.get('/favourites/:id', auth, async (req, res) => {
+    const favourites = await CustomerService.prototype.getFavourites(req.params.id);
+    res.json(favourites);
+});
+
 
 module.exports = router;
