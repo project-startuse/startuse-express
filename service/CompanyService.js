@@ -39,6 +39,18 @@ class CompanyService {
         return companies;
     }
 
+    async searchCompanies(keywords) {
+        // const companies = await Company.find({$or: [{tags: keywords}, {name: {$regex: `${keywords}`}}]});
+        const companies = await Company.aggregate([{
+            $match: {
+                tags: {
+                    $in: keywords
+                }
+            }
+        }])
+        return companies;
+    }
+
     async getCompaniesByCity(cityName) {
         const companies = await Company.find({'address.city': cityName});
         return companies;

@@ -45,9 +45,15 @@ router.get('/country/:country', async (req, res) => {
     res.json(companies);
 })
 
-// address is an object consisting of properties city, state, country
-router.get('/address/:address', async (req, res) => {
-    const companies = await CompanyService.prototype.getCompaniesByAddress(req.params.address);
+// body must have city, state and country as keys
+router.post('/address', async (req, res) => {
+    const companies = await CompanyService.prototype.getCompaniesByAddress(req.body);
+    res.json(companies);
+})
+
+router.post('/search', async (req, res) => {
+    const companies = await CompanyService.prototype.searchCompanies(req.body.keywords);
+    res.json(companies);
 })
 
 module.exports = router;
