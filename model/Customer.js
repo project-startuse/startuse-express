@@ -24,10 +24,10 @@ const customerSchema = new mongoose.Schema({
         type: String
     },
     address: addressSchema,
-    favourites: {
-        type: [mongoose.Schema.ObjectId],
-        default: []
-    }
+    favourites: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company',
+    }]
 });
 
 module.exports = mongoose.model('Customer', customerSchema);

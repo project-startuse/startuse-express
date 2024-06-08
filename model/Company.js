@@ -30,10 +30,9 @@ const companySchema = new mongoose.Schema({
         required: true,
         type: addressSchema,
     },
-    tags: {
-        type: [String],
-        default: []
-    }
+    tags: [{
+        type: String
+    }]
 });
 
 module.exports = mongoose.model('Company', companySchema);
