@@ -4,7 +4,7 @@ const router = express.Router();
 const CustomerService = require('../service/customerService');
 const auth = require('../middleware/auth');
 
-router.get(['/:id', '/profile/:id'], async (req, res) => {
+router.get(['/:id', '/profile/:id'], auth, async (req, res) => {
     const customer = await CustomerService.prototype.getCustomer(req.params.id)
     res.json(customer);
 });
