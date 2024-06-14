@@ -43,6 +43,11 @@ router.get('/favourites/:id', auth, async (req, res) => {
 router.post('/favourites/:custId/:compId', auth, async (req, res) => {
     const updatedCustomer = await CustomerService.prototype.addFavourite(req.params.custId, req.params.compId);
     res.json(updatedCustomer);
+});
+
+router.delete('/favourites/:custId/:compId', auth, async (req, res) => {
+    const updatedCustomer = await CustomerService.prototype.removeFavourite(req.params.custId, req.params.compId);
+    res.json(updatedCustomer);
 })
 
 
