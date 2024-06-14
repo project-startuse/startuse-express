@@ -49,6 +49,13 @@ class CustomerService {
         return favourites;
     }
 
+    async addFavourite(custId, compId) {
+        const customer = await Customer.findById(new ObjectId(custId));
+        customer.favourites.push(compId);
+        await customer.save();
+        return customer;
+    }
+
     async verifyCustomer(email, password) {
         const customer = await Customer.findOne({email: email});
         const isVerified = await bcrypt.compare(password, customer.password);
