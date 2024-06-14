@@ -44,8 +44,8 @@ class CustomerService {
 
     async getFavourites(id) {
         const customer = await Customer.findById(new ObjectId(id));
-        const favObjIds = customer.favourites.map((fav, id) => new ObjectId(fav));
-        const favourites = await CompanyService.prototype.getCompaniesWithIds(favObjIds);
+        
+        const favourites = await CompanyService.prototype.getCompaniesWithIds(customer.favourites);
         return favourites;
     }
 

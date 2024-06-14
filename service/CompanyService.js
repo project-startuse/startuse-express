@@ -35,7 +35,8 @@ class CompanyService {
     }
 
     async getCompaniesWithIds(idArray) {
-        const companies = await Company.find({_id: {$in: idArray}});
+        const objIds = idArray.map((idString, id) => new ObjectId(idString));
+        const companies = await Company.find({_id: {$in: objIds}});
         return companies;
     }
 
