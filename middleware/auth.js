@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const auth = (req, res, next) => {
+const auth = async (req, res, next) => {
     // if no header at all => send header missing response
     if(!req.headers) res.status(404).json({message: "header missing"});
 
@@ -12,8 +12,9 @@ const auth = (req, res, next) => {
     const token = authHeader.split(' ')[1];
     jwt.verify(token, process.env.JWT_SECRET, (err) => {
         if(err) res.status(403).json({message: err.message});
+        else next();
     });
-    next();
+    // next();
 }
 
 module.exports = auth;
