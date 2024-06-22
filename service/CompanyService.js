@@ -13,6 +13,7 @@ class CompanyService {
         const {email, password} = body;
         const hashedPassword = await bcrypt.hash(password, 11);
         body.password = hashedPassword;
+        body.tags = body.tags.split(',');
         const company = await Company.create(body);
         console.log(company);
         
