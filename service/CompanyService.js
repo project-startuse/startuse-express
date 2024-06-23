@@ -21,7 +21,8 @@ class CompanyService {
         return {
             accessToken: token,
             name: company.name,
-            id: company._id.toString()
+            id: company._id.toString(),
+            role: 'company'
         };
     }
 
@@ -86,7 +87,8 @@ class CompanyService {
         return {
             accessToken: token,
             name: company.name,
-            id: company._id.toString()
+            id: company._id.toString(),
+            role: 'company'
         };
     }
 }

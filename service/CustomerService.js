@@ -25,7 +25,8 @@ class CustomerService {
         return {
             accessToken: token,
             firstName: customer.firstName,
-            id: customer._id.toString()
+            id: customer._id.toString(),
+            role: 'customer'
         };
     }
 
@@ -74,7 +75,8 @@ class CustomerService {
             return {
                 accessToken: token,
                 firstName: customer.firstName,
-                id: customer._id.toString()
+                id: customer._id.toString(),
+                role: 'customer'
             };
         } else throw new Error('Invalid credentials');
     }
