@@ -22,7 +22,11 @@ class CustomerService {
         // token pre-generation process
         const token = generateToken(email, hashedPassword);
 
-        return {accessToken: token};
+        return {
+            accessToken: token,
+            firstName: customer.firstName,
+            id: customer._id.toString()
+        };
     }
 
     async editCustomer(id, body) {
@@ -44,7 +48,6 @@ class CustomerService {
 
     async getFavourites(id) {
         const customer = await Customer.findById(new ObjectId(id));
-        
         const favourites = await CompanyService.prototype.getCompaniesWithIds(customer.favourites);
         return favourites;
     }
@@ -68,7 +71,11 @@ class CustomerService {
         const isVerified = await bcrypt.compare(password, customer.password);
         if(isVerified) {
             const token = generateToken(email, customer.password);
-            return {accessToken: token};
+            return {
+                accessToken: token,
+                firstName: customer.firstName,
+                id: customer._id.toString()
+            };
         } else throw new Error('Invalid credentials');
     }
 }

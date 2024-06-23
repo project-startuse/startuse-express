@@ -18,7 +18,11 @@ class CompanyService {
         console.log(company);
         
         const token = generateToken(email, hashedPassword);
-        return {accessToken: token};
+        return {
+            accessToken: token,
+            name: company.name,
+            id: company._id.toString()
+        };
     }
 
     async editCompany(id, body) {
@@ -79,7 +83,11 @@ class CompanyService {
         const isVerified = await bcrypt.compare(password, company.password);
         if(!isVerified) throw new Error("Invalid credentials");
         const token = generateToken(email, company.password);
-        return {accessToken: token};
+        return {
+            accessToken: token,
+            name: company.name,
+            id: company._id.toString()
+        };
     }
 }
 
