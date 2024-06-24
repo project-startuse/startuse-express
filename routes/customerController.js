@@ -20,7 +20,7 @@ router.post('/login', async (req, res) => {
     try {
         data = await CustomerService.prototype.verifyCustomer(email, password);
     } catch(err) {
-        res.sendStatus(401).json({message: err.message});
+        res.status(401).json({message: err.message});
     }
     res.json(data);
 });
